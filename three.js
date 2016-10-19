@@ -5,13 +5,23 @@ Checkout.aggregate(
         // Grouping pipeline
         { "$group": { 
             "_id": '$movieId', 
-            "CheckoutCount": { "$sum": 1 }
+            "movieCount": { "$sum": 1 }
         }},
         // Sorting pipeline
-        { "$sort": { "CheckoutCount": -1 } },
+        { "$sort": { "movieCount": -1 } },
     ],
     function(err,result) {
-    	console.log(result[0]);
+            if(err){
+                console.log("it doesn't work");
+            }
+            //console.log(result[0]._id);
+            var movieNum = result[0]._id;
+
+        Movie.findOne({_id:movieNum},function(err,result){
+            if(err){
+                console.log("Error - abort!");
+                } console.log(result.title);
+            });
     }
 );
 

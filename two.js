@@ -4,7 +4,6 @@
 
 
 module.exports = function(mongoose, Checkout, Movie) {
-	// How many users are there?
 
 	Checkout.aggregate(
     {
